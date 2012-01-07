@@ -1,10 +1,10 @@
 /**
  * Project 1
  Matt Toft 
- MIU 1111
+ ASD 1201
 
  */
-window.addEventListener("DOMContentLoaded", function() {
+$(document).ready(function(){
 
 	function $(x) {
 		var theElement = document.getElementById(x);
@@ -12,18 +12,18 @@ window.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function makeList() {
-		var formTag = document.getElementsByTagName("form");
-		var selectLi = $('select');
-		var makeSelect = document.createElement('select');
+		var formTag = $("form");
+		var selectLi = $('#select');
+		var makeSelect $(document.createElement('select'));
 		makeSelect.setAttribute("id", "dropdown");
 		for(var i = 0, j = ministry.length; i < j; i++) {
 			var makeOption = document.createElement('option');
 			var optText = ministry[i];
-			makeOption.setAttribute("value", optText);
-			makeOption.innerHTML = optText;
-			makeSelect.appendChild(makeOption);
+			makeOption.setAttribute("value", optionText);
+			makeOption.html (optionText);
+			makeSelect.appendTo(makeOption);
 		}
-		selectLi.appendChild(makeSelect);
+		selectLi.appendTo(makeSelect);
 	}
 
 	function getradio() {
@@ -47,17 +47,17 @@ window.addEventListener("DOMContentLoaded", function() {
 	function toggleControls(n) {
 		switch(n) {
 			case "on":
-				$('minform').style.display = "none";
-				$('clear').style.display = "inline";
-				$('displayLink').style.display = "none";
-				$('addnew').style.display = "inline";
+				$('minform').css = "none";
+				$('clear').css = "inline";
+				$('displayLink').css = "none";
+				$('addnew').css = "inline";
 				break;
 			case "off":
-				$('minform').style.display = "block";
-				$('clear').style.display = "inline";
-				$('displayLink').style.display = "inline";
-				$('addnew').style.display = "none";
-				$('items').style.display = "none";
+				$('minform').css = "block";
+				$('clear').css = "inline";
+				$('displayLink').css = "inline";
+				$('addnew').css = "none";
+				$('items').css = "none";
 				break;
 			default:
 				return false;
@@ -73,16 +73,16 @@ window.addEventListener("DOMContentLoaded", function() {
 		getradio();
 		getcheckval();
 		var item = {};
-		item.fname = ["First Name:", $('fname').value];
-		item.lname = ["Last Name:", $('lname').value];
-		item.email = ["Email:", $('email').value];
-		item.tel = ["Telephone #:", $('tel').value];
+		item.fname = ["First Name:", $('#fname').value];
+		item.lname = ["Last Name:", $('#lname').value];
+		item.email = ["Email:", $('#email').value];
+		item.tel = ["Telephone #:", $('#tel').value];
 		item.radios = ["Sex:", sexval];
-		item.group = ["Ministry:", $('dropdown').value];
-		item.attending = ["Attending Months:", $('attending').value];
+		item.group = ["Ministry:", $('#dropdown').value];
+		item.attending = ["Attending Months:", $('#attending').value];
 		item.partner = ["Partner:", memtypeval];
-		item.memtype = ["Member Type:", $('checkbox-1').value];
-		item.status = ["Status:", $('status').value];
+		item.memtype = ["Member Type:", $('#checkbox-1').value];
+		item.status = ["Status:", $('#status').value];
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Data submitted, a ministry leader will contact you soon.");
 	}
@@ -190,10 +190,10 @@ window.addEventListener("DOMContentLoaded", function() {
 
 		toggleControls("off");
 
-		$('fname').value = item.fname[1];
-		$('lname').value = item.lname[1];
-		$('email').value = item.email[1];
-		$('tel').value = item.tel[1];
+		$('#fname').val(item.fname[1]);
+		$('#lname').val(item.lname[1]);
+		$('#email').val(item.email[1]);
+		$('#tel').val(item.tel[1]);
 		
 		var radios = document.forms[0].sex;
 		for(var i = 0; i < radios.length; i++) {
@@ -203,18 +203,18 @@ window.addEventListener("DOMContentLoaded", function() {
 				radios[i].setAttribute("checked", "checked");
 			}
 		}
-		$('dropdown').value = item.dropdown[1];
-		$('attending').value = item.attending[1];
+		$('#dropdown').val(item.dropdown[1]);
+		$('#attending').value(item.attending[1]);
 		if(item.partner[1] == 'yes') {
-			$('partner').setAttribute("checked", "checked");
+			$('#partner').setAttribute("checked", "checked");
 		}
-		$('checkbox-1').value = item.memtype[1];
-		$('story').value = item.story[1];
+		$('#checkbox-1').val(item.memtype[1]);
+		$('#story').val(item.story[1]);
 
-		save.removeEventListener("click", storeData);
+		saveEntry.unbind("click", storeData);
 
-		$('submit').value = "Edit Contact";
-		var editsubmit = $('submit');
+		$('#submit').value = "Edit Contact";
+		var editsubmit = $('#submit');
 		editsubmit.addEventListener("click", validate);
 		editsubmit.key = this.key;
 
@@ -243,19 +243,19 @@ window.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function validate(e) {
-		var getgroup = $('dropdown');
-		var getfname = $('fname');
-		var getlname = $('lname');
-		var getemail = $('email');
+		var getgroup = $('#dropdown');
+		var getfname = $('#fname');
+		var getlname = $('#lname');
+		var getemail = $('#email');
 
-	errmsg.innerHTML = "";
-		getgroup.style.border = "1px solid black";
-		getfname.style.border = "1px solid black";
-		getlname.style.border = "1px solid black";
-		getemail.style.border = "1px solid black";
+	errmsg.css("display", "none");
+		$("#dropdown").css ("border","");
+		$("#fname").css ("border","");
+		$("#lname").css ("border","");
+		$("#email").css ("border","");
 
 		var messagearray = [];
-		if(getgroup.value === "") {
+		if(getgroup.val === "") {
 			var grouperror = 'Please Choose a Ministry Option.';
 			getgroup.style.border = "3px solid red";
 			messagearray.push(grouperror);
