@@ -6,10 +6,10 @@
  */
 $(document).ready(function(){
 
-	function $(x) {
+/*	function $(x) {
 		var theElement = document.getElementById(x);
 		return theElement;
-	}
+} */
 
 	function makeList() {
 		var formTag = $("form");
@@ -24,7 +24,7 @@ $(document).ready(function(){
 			makeSelect.appendTo(makeOption);
 		}
 		selectLi.appendTo(makeSelect);
-	}
+	};
 
 	function getradio() {
 		var radio = document.forms[0].sex;
