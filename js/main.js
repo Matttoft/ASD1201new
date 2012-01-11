@@ -11,7 +11,7 @@ $(document).ready(function(){
 		return theElement;
 } */
 
-	function makeList() {
+/*	function makeList() {
 		var formTag = $("form");
 		var selectLi = $('#select');
 		var makeSelect $(document.createElement('select'));
@@ -24,21 +24,21 @@ $(document).ready(function(){
 			makeSelect.appendTo(makeOption);
 		}
 		selectLi.appendTo(makeSelect);
-	};
+}; */
 
-	function getradio() {
+/*	function getradio() {
 		var radio = document.forms[0].sex;
 		for(var i = 0; i < radio.length; i++) {
 			if(radio[i].checked) {
-				sexval = radio[i].value;
+				sexval = radio[i].val();
 			}
 		}
 
-	}
+} */
 
 	function getcheckval() {
 		if($('checkbox-1').checked) {
-			memtypeval = $('checkbox-1').value;
+			memtypeval = $('checkbox-1').val();
 		} else {
 			memtypeval = "No"
 		}
@@ -70,55 +70,39 @@ $(document).ready(function(){
 		} else {
 			id = key;
 		}
-		getradio();
-		getcheckval();
+	//	getradio();
+	//	getcheckval();
 		var item = {};
-		item.fname = ["First Name:", $('#fname').value];
-		item.lname = ["Last Name:", $('#lname').value];
-		item.email = ["Email:", $('#email').value];
-		item.tel = ["Telephone #:", $('#tel').value];
-		item.radios = ["Sex:", sexval];
-		item.group = ["Ministry:", $('#dropdown').value];
-		item.attending = ["Attending Months:", $('#attending').value];
-		item.partner = ["Partner:", memtypeval];
-		item.memtype = ["Member Type:", $('#checkbox-1').value];
-		item.status = ["Status:", $('#status').value];
-		localStorage.setItem(id, JSON.stringify(item));
+		item.fname = ["First Name:", $('#fname').val()];
+		item.lname = ["Last Name:", $('#lname').val()];
+		item.email = ["Email:", $('#email').val()];
+		item.tel = ["Telephone #:", $('#tel').val()];
+	//	item.radios = ["Sex:", sexval];
+		item.group = ["Ministry:", $('#dropdown').val()];
+		item.attending = ["Attending Months:", $('#attending').val()];
+	//	item.partner = ["Partner:", memtypeval];
+		item.memtype = ["Member Type:", $('#checkbox-1').val()];
+		
+		sessionStorage.setItem(id, JSON.stringify(item));
 		alert("Data submitted, a ministry leader will contact you soon.");
+		$.mobile.changePage( 'additem.html', {reloadPage: true},{ allowSamePageTranstion: true},{ transition: 'none'});
 	}
 
 	function getdata() {
-		toggleControls("on")
-		if(localStorage.length === 0) {
-			autofilldata();
-			alert("There is no data in local storage, default data was added.");
-		}
-		var makediv = document.createElement('div');
-		makediv.setAttribute("id", "items");
-		var createlist = document.createElement('ul');
-		makediv.appendChild(createlist);
-		document.body.appendChild(makediv);
-		$('items').style.display = "block";
-		for(var i = 0, len = localStorage.length; i < len; i++) {
-			var makeli = document.createElement('li');
-			var linksli = document.createElement('li');
-			createlist.appendChild(makeli);
-			var key = localStorage.key(i);
-			var value = localStorage.getItem(key);
-			var obj = JSON.parse(value);
-			var makesublist = document.createElement('ul');
-			makeli.appendChild(makesublist);
-			getimage(obj.dropdown[1], makesublist);
-			for(var n in obj) {
-				var makesubli = document.createElement('li');
-				makesublist.appendChild(makesubli);
-				var optsubtext = obj[n][0] + " " + obj[n][1];
-				makesubli.innerHTML = optsubtext;
-				makesubli.appendChild(linksli);
-			}
-			makeitemlinks(localStorage.key(i), linksli);
-		}
-	}
+	       $('#pullDiv').append(
+			
+			'<li>Name: ' + item.fname.toUpperCase()+ " " item.lname.toUpperCase() + '</li>' + 
+			'<li>Email: ' + item.email + '</li>' +
+			'<li>Telephone: ' + item.tel + '</li>' +
+			'<li>Ministry: ' + item.dropdown + '</li>' +
+			'<li>Months Attending: ' + item.attending + '</li>' + 
+			'<li>Member Type: ' + item.checkbox-1 + '</li> ' +
+			'<li>Partner: ' + item.memtype +'</li>'
+		);
+	sessionStorage.getItem("id", JSON.stringify());
+}); 
+$('#pullDiv').listview('refresh');
+
 
 	function getimage(catname, makesublist) {
 		var imageli = document.createElement('li');
@@ -197,14 +181,14 @@ $(document).ready(function(){
 		
 		var radios = document.forms[0].sex;
 		for(var i = 0; i < radios.length; i++) {
-			if(radios[i].value == 'male' && item.radios[1] == "male") {
+			if(radios[i].val() == 'male' && item.radios[1] == "male") {
 				radios[i].setAttribute("checked", "checked");
-			} else if(radios[i].value == 'female' && item.radios[1] == "female") {
+			} else if(radios[i].val() == 'female' && item.radios[1] == "female") {
 				radios[i].setAttribute("checked", "checked");
 			}
 		}
 		$('#dropdown').val(item.dropdown[1]);
-		$('#attending').value(item.attending[1]);
+		$('#attending').val()(item.attending[1]);
 		if(item.partner[1] == 'yes') {
 			$('#partner').setAttribute("checked", "checked");
 		}
@@ -213,7 +197,7 @@ $(document).ready(function(){
 
 		saveEntry.unbind("click", storeData);
 
-		$('#submit').value = "Edit Contact";
+		$('#submit').val() = "Edit Contact";
 		var editsubmit = $('#submit');
 		editsubmit.addEventListener("click", validate);
 		editsubmit.key = this.key;
@@ -231,16 +215,16 @@ $(document).ready(function(){
 		}
 	}
 
-	function clearLocal() {
-		if(localStorage.length === 0) {
-			alert("There is no data to clear.");
-		} else {
-			localStorage.clear();
-			alert("Storage Cleared.")
-			window.location.reload();
-			return false;
-		}
-	}
+	   function clearLocal() {
+        if (sessionStorage.length === 0) {
+            alert("There is nothing in Storage");
+        } else {
+            sessionStorage.clear();
+            alert("Data has been cleared");
+            return false;
+        }
+    }
+
 
 	function validate(e) {
 		var getgroup = $('#dropdown');
@@ -260,18 +244,18 @@ $(document).ready(function(){
 			getgroup.style.border = "3px solid red";
 			messagearray.push(grouperror);
 		}
-		if(getfname.value === "") {
+		if(getfname.val() === "") {
 			var fnameerror = 'Please Enter a First Name.';
 			getfname.style.border = "3px solid red";
 			messagearray.push(fnameerror);
 		}
-		if(getlname.value === "") {
+		if(getlname.val() === "") {
 			var lnameerror = 'Please Enter a Last Name.';
 			getlname.style.border = "3px solid red";
 			messagearray.push(lnameerror);
 		}
 		var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-		if(!(re.exec(getemail.value))) {
+		if(!(re.exec(getemail.val()))) {
 			var emailerror = "Please Enter a Valid Email Address";
 			getemail.style.border = "3px solid red";
 			messagearray.push(emailerror);
