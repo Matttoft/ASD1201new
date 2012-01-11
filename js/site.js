@@ -22,9 +22,7 @@ $(document).ready(function() {
 			});
 		}
 	});
-	//Load CSV Data I think this is not kosher for the csv but not 100% sure
-	$('#CSV').empty();
-	$('#CSV').CSVToTable('xhr/data.csv');
+
 });
 //Getting data from a JSON file
 $.getJSON('xhr/data.json', function(data) {
