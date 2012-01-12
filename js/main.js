@@ -5,6 +5,7 @@
 
  */
 $(document).ready(function(){
+<<<<<<< HEAD
 
 /*	function $(x) {
 		var theElement = document.getElementById(x);
@@ -74,10 +75,22 @@ $(document).ready(function(){
 
 	function storeData(key) {
 		if(!key) {
+=======
+	
+	var formLock = $(".lockup").length;
+
+
+	$('#submit').live('click',function(key) {
+		var xkey=this.key;
+		var id='';
+		
+		if(!xkey) {
+>>>>>>> gh-pages
 			var id = Math.floor(Math.random() * 100000001);
 		} else {
-			id = key;
+			id = xkey;
 		}
+<<<<<<< HEAD
 	//	getradio();
 	//	getcheckval();
 		var item = {};
@@ -94,10 +107,15 @@ $(document).ready(function(){
 		item.status = ["Status:", $('#status').value];
 		localStorage.setItem(id, JSON.stringify(item));
 =======
+=======
+
+		var item = {};
+>>>>>>> gh-pages
 		item.fname = ["First Name:", $('#fname').val()];
 		item.lname = ["Last Name:", $('#lname').val()];
 		item.email = ["Email:", $('#email').val()];
 		item.tel = ["Telephone #:", $('#tel').val()];
+<<<<<<< HEAD
 	//	item.radios = ["Sex:", sexval];
 		item.group = ["Ministry:", $('#dropdown').val()];
 		item.attending = ["Attending Months:", $('#attending').val()];
@@ -125,6 +143,18 @@ $(document).ready(function(){
 }); 
 $('#pullDiv').listview('refresh');
 
+=======
+		item.sex =["Sex:",$('input:radio[name=sex]:checked').val()];
+		item.group = ["Ministry:", $('#dropdown').val()];
+		item.attending = ["Attending Months:", $('#attending').val()];
+		item.memtype = ["Member Type:", $('#checkbox').val()];
+		
+		sessionStorage.setItem(id, JSON.stringify(item));
+		alert("Data submitted, a ministry leader will contact you soon.");
+	//	$.mobile.changePage( 'additem.html', {reloadPage: true},{ allowSamePageTranstion: true},{ transition: 'none'});
+	});
+	
+>>>>>>> gh-pages
 
 	function getimage(catname, makesublist) {
 		var imageli = document.createElement('li');
@@ -133,8 +163,16 @@ $('#pullDiv').listview('refresh');
 		var setsrc = newimg.setAttribute('src', "img/" + catname + ".gif");
 		imageli.appendChild(newimg);
 	}
+	
+	    function lok() {
+    
+    	if ($(".lockup").length === 0){
+    		$("[type='submit']").button('enable');
+    	};	
+    };  
 
 
+<<<<<<< HEAD
 /*	function autofilldata() {
 		var json = {
 			'contact1' : {
@@ -289,40 +327,54 @@ $('#pullDiv').listview('refresh');
 			var emailerror = "Please Enter a Valid Email Address";
 			getemail.style.border = "3px solid red";
 			messagearray.push(emailerror);
+=======
+>>>>>>> gh-pages
 
-		}
-		if(messagearray.length >= 1) {
-			for(var i = 0, j = messagearray.length; i < j; i++) {
-				var text = document.createElement('li');
-				text.innerHTML = messagearray[i];
-				errmsg.appendChild(text);
-			}
-			e.preventDefault();
-			return false;
-		} else {
-			storeData(this.key);
-		}
+	$("#fname").live("blur", function(){
+		if (this.value === "") {
+            $(this).css("border", "solid 1px red");
+            $("#fnameErr").show();
+		};
+		if(this.value !== "") {
+			$(this).css("border", "solid 1px green");
+			$("#fnameErr").remove();
+		};
+		lok();         
+	});
 
-	}
+	$("#lname").live("blur", function(){
+		if (this.value === "") {
+            $(this).css("border", "solid 1px red");
+            $("#lnameErr").show();
+		};
+		if(this.value !== "") {
+			$(this).css("border", "solid 1px green");
+			$("#lnameErr").remove();		
+		};
+		lok();
+	});
 
-//	var ministry = ["--Select One--", "Impressions", "Usher","Worship", "Tech","Nursery"];
-	var sexval;
-	var memtypeval = "No", errmsg = $('errors');
-
-//	makeList();
+	$("#male").live("change", function(){
+		$("#genderErr").remove();
+	});
+	$("#female").live("change", function(){
+		$("#genderErr").remove();
+	});
 	
 
-	/* var displink = $("displayLink");
+	$("#dropdown").live("change", function(){
+		if (this.value === "") {
+            $("#groupErr").show();
+		};
+		if(this.value !== "Select Ministry") {
+			$("#groupErr").remove();
+		};
+		lok();
+	});
 
-	displink.addEventListener("click", getdata);
 
-	var clearlink = $("clear");
 
-	clearlink.addEventListener("click", clearLocal); */
 
-	var save = $('submit');
-
-	save.addEventListener("click", validate);
 });
 $("#minsignup").validate({
     submitHandler: function(form) {
