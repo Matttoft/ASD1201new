@@ -36,7 +36,7 @@ $('#json').bind('click', function(){
    $('#xml').bind('click', function(){
 	$('#browse').empty();
 	$.ajax({
-		url: 'xhr/data.xml',
+		url: 'XHR/data.xml',
 		type: 'GET',
 		dataType: 'xml',
 		success: function(xml){
