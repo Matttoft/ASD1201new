@@ -1,6 +1,6 @@
 /**
  * @author Matt Toft
- * ASD 1201
+ * ASD 1112
  */
 
 $(document).ready(function() {
@@ -18,11 +18,11 @@ $('#json').bind('click', function(){
         	for (var i=0, j=response.techteam.length; i<j; i++){
 				var jdata = response.techteam[i];
 				$(''+
-					'<li class="member">'+
+					'<li class="members">'+
 						'<h2>'+ jdata.fname +'</h2>'+
-						'<h3>'+ jdata.ministry +'</h3>'+
-						'<h4>'+ jdata.email +'</h4>'+
+						'<h3>'+ jdata.email +'</h3>'+
 						'<h4>'+ jdata.tel +'</h4>'+
+						'<h4>'+ jdata.ministry +'</h4>'+
 					'</li><hr />'
 				).appendTo('#browse');
 				console.log(response);
@@ -36,7 +36,7 @@ $('#json').bind('click', function(){
    $('#xml').bind('click', function(){
 	$('#browse').empty();
 	$.ajax({
-		url: 'XHR/data.xml',
+		url: 'xhr/data.xml',
 		type: 'GET',
 		dataType: 'xml',
 		success: function(xml){
