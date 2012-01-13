@@ -6,6 +6,7 @@
  */
 $(document).ready(function(){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /*	function $(x) {
 		var theElement = document.getElementById(x);
@@ -80,16 +81,26 @@ $(document).ready(function(){
 	var formLock = $(".lockup").length;
 
 
+=======
+	
+	var formLock = $(".lockup").length;
+
+
+>>>>>>> gh-pages
 	$('#submit').live('click',function(key) {
 		var xkey=this.key;
 		var id='';
 		
 		if(!xkey) {
+<<<<<<< HEAD
+>>>>>>> gh-pages
+=======
 >>>>>>> gh-pages
 			var id = Math.floor(Math.random() * 100000001);
 		} else {
 			id = xkey;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	//	getradio();
 	//	getcheckval();
@@ -105,6 +116,19 @@ $(document).ready(function(){
 		item.partner = ["Partner:", memtypeval];
 		item.memtype = ["Member Type:", $('#checkbox-1').value];
 		item.status = ["Status:", $('#status').value];
+=======
+
+		var item = {};
+		item.fname = ["First Name:", $('#fname').val()];
+		item.lname = ["Last Name:", $('#lname').val()];
+		item.email = ["Email:", $('#email').val()];
+		item.tel = ["Telephone #:", $('#tel').val()];
+		item.sex =["Sex:",$('input:radio[name=sex]:checked').val()];
+		item.group = ["Ministry:", $('#dropdown').val()];
+		item.attending = ["Attending Months:", $('#attending').val()];
+		item.memtype = ["Member Type:", $('#checkbox').val()];
+		
+>>>>>>> gh-pages
 		localStorage.setItem(id, JSON.stringify(item));
 =======
 =======
@@ -125,6 +149,7 @@ $(document).ready(function(){
 		sessionStorage.setItem(id, JSON.stringify(item));
 >>>>>>> gh-pages
 		alert("Data submitted, a ministry leader will contact you soon.");
+<<<<<<< HEAD
 		$.mobile.changePage( 'additem.html', {reloadPage: true},{ allowSamePageTranstion: true},{ transition: 'none'});
 	}
 
@@ -155,6 +180,11 @@ $('#pullDiv').listview('refresh');
 	});
 	
 >>>>>>> gh-pages
+=======
+
+	});
+	
+>>>>>>> gh-pages
 
 	function getimage(catname, makesublist) {
 		var imageli = document.createElement('li');
@@ -172,6 +202,7 @@ $('#pullDiv').listview('refresh');
     };  
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*	function autofilldata() {
 		var json = {
@@ -329,6 +360,8 @@ $('#pullDiv').listview('refresh');
 			messagearray.push(emailerror);
 =======
 >>>>>>> gh-pages
+=======
+>>>>>>> gh-pages
 
 	$("#fname").live("blur", function(){
 		if (this.value === "") {
@@ -336,11 +369,16 @@ $('#pullDiv').listview('refresh');
             $("#fnameErr").show();
 		};
 		if(this.value !== "") {
+<<<<<<< HEAD
 			$(this).css("border", "solid 1px green");
+=======
+			$(this).css("border", "solid 1px black");
+>>>>>>> gh-pages
 			$("#fnameErr").remove();
 		};
 		lok();         
 	});
+<<<<<<< HEAD
 
 	$("#lname").live("blur", function(){
 		if (this.value === "") {
@@ -362,6 +400,21 @@ $('#pullDiv').listview('refresh');
 	});
 	
 
+=======
+
+	$("#lname").live("blur", function(){
+		if (this.value === "") {
+            $(this).css("border", "solid 1px red");
+            $("#lnameErr").show();
+		};
+		if(this.value !== "") {
+			$(this).css("border", "solid 1px black");
+			$("#lnameErr").remove();		
+		};
+		lok();
+	});
+
+>>>>>>> gh-pages
 	$("#dropdown").live("change", function(){
 		if (this.value === "") {
             $("#groupErr").show();

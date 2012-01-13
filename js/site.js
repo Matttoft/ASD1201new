@@ -5,6 +5,7 @@
 
 $(document).ready(function() {
 	//site code
+<<<<<<< HEAD
     $('#click1 a').click(function(){
         $('#mytest').empty();
         $.ajax({
@@ -55,4 +56,109 @@ $(document).ready(function() {
         $('#mytest').CSVToTable('xhr/test.csv');
     });
 });
+=======
+	
+		
+		
+$('#json').bind('click', function(){
+	$('#browse').empty();
+	$.ajax({
+		url: 'XHR/data.json',
+		type: 'GET',
+		dataType: 'json',
+		success: function(response){
+        	for (var i=0, j=response.techteam.length; i<j; i++){
+				var jdata = response.techteam[i];
+				$(''+
+					'<li class="member">'+
+						'<h2>'+ jdata.fname +'</h2>'+
+						'<h3>'+ jdata.ministry +'</h3>'+
+						'<h4>'+ jdata.email +'</h4>'+
+						'<h4>'+ jdata.tel +'</h4>'+
+					'</li><hr />'
+				).appendTo('#browse');
+				console.log(response);
+			}
+		}
+	});
+	return false;
 });
+
+
+   $('#xml').bind('click', function(){
+	$('#browse').empty();
+	$.ajax({
+		url: 'xhr/data.xml',
+		type: 'GET',
+		dataType: 'xml',
+		success: function(xml){
+			$(xml).find("mem").each(function(){
+   				var name = $(this).find('fname').text();
+   				var email= $(this).find('email').text();
+   				var tel= $(this).find('phone').text();
+				var min= $(this).find('min').text();
+    			$(''+
+					'<li class="member">'+
+						'<h2>'+ name+'</h2>'+
+						'<h3>'+ min +'</h3>'+
+						'<h4>'+ email +'</h4>'+
+						'<h4>'+ tel+'</h4>'+				
+
+						
+					'</li><hr />'
+				).appendTo('#browse');
+				console.log(xml);
+			});
+		}
+	});
+	return false;
+});
+
+	$('#csv').bind('click', function(){
+	$('#browse').empty();
+	 $.ajax({
+        type: "GET",
+        url: "XHR/data.csv",
+        dataType: "text",
+        success: function(data) {
+        	var allTextLines = data.split(/\r\n|\n/);
+    		var headers = allTextLines[0].split(',');
+    		var lines = []; 
+
+			for (var i=1; i<allTextLines.length; i++) {
+				var data = allTextLines[i].split(',');
+				if (data.length == headers.length) {
+					var members= []; 
+					
+					for (var j=0; j<headers.length; j++) {
+						members.push(data[j]);
+					}
+					lines.push(members); 
+				}
+				
+			}
+			
+			for (var m=0; m<lines.length; m++){
+				var member = lines[m];
+			$(''+
+					'<li class="memebrs">'+
+						'<h2>'+ member[0] +'</h2>'+
+						'<h4>'+ member[5] +'</h4>'+
+						'<h4>'+ member[2] +'</h4>'+
+						'<h4>'+ member[3] +'</h4>'+
+					'</li><hr />'
+				).appendTo('#browse');
+			console.log(lines);	
+			}
+        }
+	});
+	return false;
+>>>>>>> gh-pages
+});
+
+		
+		
+		
+		
+	});
+		
