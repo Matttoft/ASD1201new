@@ -7,7 +7,7 @@
             "sexval": "Male",
             "ministry": "Tech",
             "memtype": "Yes",
-                    },
+                    }
         {
                "fname": "Craig",
             "lName":  "Krenzel",
@@ -17,7 +17,7 @@
             "ministry":"Tech",
             "memtype": "Yes",
            
-        },
+        }
            {
         	"fname": "Michael",
             "lName":  "Jenkins",
@@ -27,7 +27,7 @@
             "ministry":"Tech",
             "memtype": "Yes",
            
-        },
+        }
          {
         	"fname": "Jon",
             "lName":  "Sams",
@@ -37,7 +37,7 @@
             "ministry":"Tech",
             "memtype": "Yes",
            
-        },
+        }
            {
         	"fname" : "Paul",
             "lName":  "Brown",
